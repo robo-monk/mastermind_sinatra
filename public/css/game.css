@@ -1,0 +1,49 @@
+body {
+  font-family: 'Roboto';
+  font-size: 24px;
+  line-height: 2.6;
+  text-align: center;
+  color: whitesmoke;
+  background-color: black;
+}
+
+h3 {
+  font-weight: 400;
+  transition: all 0.1s ease;
+
+}
+
+h3:hover {
+  font-weight: 500;
+  cursor: none;
+  letter-spacing: 2;
+}
+
+/* div {
+  font-weight: 300;
+  transition: all 0.1s ease;
+  cursor: pointer;
+
+}
+
+div:hover {
+  font-weight: 300;
+  background-color: whitesmoke;
+  color: black;
+} */
+
+body {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}

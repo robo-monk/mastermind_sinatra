@@ -9,8 +9,10 @@ class Game
     @rows_played = Array.new()
     @player = player
     @train = train
+    # @board = 'hello mofo'
     @board = Board.new
     @player ||= Player.new "robo"
+    # next_state
   end
   def next_state
     current_row.generate_evaluation(@board.target_row)
@@ -54,7 +56,7 @@ class Game
     update_screen true
     # rows_played.each do |row| puts row.render + row.keys.render end
   end
-  def board
+  def get_board
     @board
   end
   def update_screen game_over = false

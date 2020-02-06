@@ -19,6 +19,7 @@ class Pawn
   public
   def render
     get_sprite.colorize(get_color_code)
+    # "o"
   end
   def change_color reverse = false
     val = 1
