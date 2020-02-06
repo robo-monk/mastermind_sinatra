@@ -22,17 +22,19 @@ class Board
     puts (!game_over ? "   ?   ?   ?   ?" : @target_row.render )
     # puts (!game_over ? @target_row.render : @target_row.render )
     puts "│"+SPACER
-    rendered_array = Array.new
+    rendered_string = ""
     @board_matrix.reverse.each_with_index do |row, index|
-      rendered_array << row.render << "<br>"
+      rendered_string << row.render
+      rendered_string << "<text>&nbsp; &nbsp; | | |</text>"
+      rendered_string << "<br>"
       if @board_matrix.length-index-1==select
         puts row.render(true) + (!game_over ? "  -#{index+1} attempts left" : "- FINAL COMP")
       else
         puts row.render + (row.keys.render) if row.activated?
       end
-      puts "│"+SPACER+"│"
+      puts ""+SPACER+""
     end
-    rendered_array
+    rendered_string
   end
   def color_change_at x, y, reverse = false
     @board_matrix[y].at(x).change_color reverse

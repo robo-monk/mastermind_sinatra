@@ -29,7 +29,7 @@ class Row
       rendered_string << pawn.render + PAWN_SPACING
     end
     if selected then return "├┤ " + rendered_string[0..-PAWN_SPACING.length] + "├┤" 
-    else return "│  " + rendered_string[0..-PAWN_SPACING.length] + " │ -" end
+    else return rendered_string[0..-PAWN_SPACING.length] end
   end
   def generate_evaluation target
     @keys = Keys.new(self, target)
