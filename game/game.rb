@@ -5,12 +5,12 @@ require_relative './modules/screen.rb'
 class Game
   include BoardSettings
   attr_accessor :board, :player, :turns, :rows_played, :train, :won
-  def initialize train=false, player=nil
+  def initialize cols, train=false, player=nil
     @rows_played = Array.new()
     @player = player
     @train = train
     # @board = 'hello mofo'
-    @board = Board.new
+    @board = Board.new(cols)
     @turns = 12
     @player ||= Player.new "robo"
     @won = false
@@ -18,7 +18,7 @@ class Game
   end
   def next_state
     current_row.generate_evaluation(@board.target_row)
-    if current_row.keys.all_black? then @won = true; return end #game_over(current_row) end
+    if current_row.keys.all_black? then @won = true; puts = 'get rexk'; return end #game_over(current_row) end
     if @turns<BOARD_DIMENSIONS[1]-1
       current_row.activate
     else game_over current_row end
@@ -55,6 +55,9 @@ class Game
     else
       @board.render(@turns, game_over)
     end
+  end
+  def won?
+    won
   end
 end
 

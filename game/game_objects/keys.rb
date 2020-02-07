@@ -31,9 +31,10 @@ class Keys
     wh = bw[1]
     bl_str = "|"*bl
     wh_str = "|"*wh
-    return bl_str.colorize(0) + wh_str.colorize(1)
+    return bl_str.colorize(1) + wh_str.colorize(0)
   end
   def all_black?
+    puts find_difference[0].to_s
     find_difference[0] >= 4
   end
 end

@@ -56,7 +56,7 @@ class Board
     @board_matrix[y].reverse_sprite_all
   end
   def set_target_array preference=nil
-    if preference.nil? then preference = [rand(8),rand(88),rand(8),rand(8)] end
+    if preference.nil? then preference = [rand(8),rand(8),rand(8),rand(8)] end
     @target_row = Row.new(preference)
   end
 end

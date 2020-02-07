@@ -2,7 +2,9 @@ require 'sinatra'
 require 'sinatra/reloader' #TODO remove this
 require './game/game.rb'
 
-set :game, Game.new
+set :game, Game.new([rand(8),rand(8),rand(8),rand(8)])
+# set :game, Game.new([1,1,1,1])
+
 set :turns, -1
 
 get '/' do
@@ -16,15 +18,15 @@ get '/game' do
   c3 = params['c3'].to_i
   c4 = params['c4'].to_i
   # puts c1,c2,c3,c4
-  if settings.turns <11
+  
+  if settings.turns < 11 
     settings.game.edit_board(settings.turns, [c1,c2,c3,c4])
     out = settings.game.board.render
   else
-    if settings.game.won
-      out = "Game Over, winner!"
-    else
-      out = 'you suckkk :('
-    end
+    out = 'you suckkk :('
+  end
+  if settings.game.won?
+    out = "you won!"
   end
   # col1 = 'red'
   # puts b.render
