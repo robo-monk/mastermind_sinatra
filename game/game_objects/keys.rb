@@ -1,4 +1,5 @@
 require_relative './pawn.rb'
+require_relative '../custom_classes/color_string.rb'
 class Keys
   attr_accessor :this, :that, :keys_array
   def initialize this, target_array
@@ -26,7 +27,11 @@ class Keys
   end
   def render
     bw = find_difference
-    return "BLACK: #{bw[0]} , WHITE: #{bw[1]}"
+    bl = bw[0]
+    wh = bw[1]
+    bl_str = "|"*bl
+    wh_str = "|"*wh
+    return bl_str.colorize(36) + wh_str.colorize(35)
   end
   def all_black?
     find_difference[0] >= 4

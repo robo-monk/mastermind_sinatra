@@ -11,40 +11,29 @@ class Game
     @train = train
     # @board = 'hello mofo'
     @board = Board.new
+    @turns = 12
     @player ||= Player.new "robo"
     # next_state
   end
   def next_state
     current_row.generate_evaluation(@board.target_row)
-    if current_row.keys.all_black? then return game_over(current_row) end
+    if current_row.keys.all_black? then return puts 'won' end #game_over(current_row) end
     if @turns<BOARD_DIMENSIONS[1]-1
-      @turns += 1
       current_row.activate
-      edit_board 
     else game_over current_row end
   end
-  def edit_board
+  def edit_board(turns, row_array_colors)
+    @turns = turns
+    next_state
     cursor=BOARD_DIMENSIONS[0]**2
-    @board.sprite_change_at(cursor%BOARD_DIMENSIONS[0], @turns, true)
+    # @board.sprite_change_at(cursor%BOARD_DIMENSIONS[0], @turns, true)
     update_screen
-    @player.get_live_input rows_played do |state|
-      case state
-      when 'up'
-        @board.color_change_at(cursor%BOARD_DIMENSIONS[0], @turns)
-      when 'down'
-        @board.color_change_at(cursor%BOARD_DIMENSIONS[0], @turns, true)
-      when 'right'
-        @board.sprite_change_at(cursor%BOARD_DIMENSIONS[0], @turns, true)
-        cursor+=1
-        @board.sprite_change_at(cursor%BOARD_DIMENSIONS[0], @turns)
-      when 'left'
-        @board.sprite_change_at(cursor%BOARD_DIMENSIONS[0], @turns, true)
-        cursor-=1
-        @board.sprite_change_at(cursor%BOARD_DIMENSIONS[0], @turns, true)
-      end
-      update_screen
+    row_array_colors.each_with_index do |col, index|
+      @board.color_change_at(index, @turns, true, col)
+      @board.sprite_change_at(index, @turns)
+        # b.sprite_change_at(settings.of%3,3)
+
     end
-    @board.sprite_change_at(cursor%BOARD_DIMENSIONS[0], @turns)
     @board.reverse_row @turns
     rows_played<<current_row
     next_state
@@ -63,7 +52,6 @@ class Game
     if train 
       # print "|"
     else
-      Screen.clear
       @board.render(@turns, game_over)
     end
   end

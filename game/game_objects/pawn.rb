@@ -21,16 +21,15 @@ class Pawn
     get_sprite.colorize(get_color_code)
     # "o"
   end
-  def change_color reverse = false
-    val = 1
-    if reverse then val = -1 end
-    @color+=val
+  def change_color reverse = false, col
+    @color=col
   end
   def change_sprite reverse = false
-    purgable=true
-    val = 1
-    if reverse then val = -1 end
-    @sprite+=val
+    # purgable=true
+    # val = 1
+    # if reverse then val = -1 end
+    # @sprite+=val
+    @sprite=0 
   end
   def get_color
     get_color_code

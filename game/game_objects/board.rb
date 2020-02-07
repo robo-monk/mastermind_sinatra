@@ -18,29 +18,34 @@ class Board
   public
   def render select=-1, game_over=false
     out = ""
-    puts "│"+SPACER
-    puts (!game_over ? "   ?   ?   ?   ?" : @target_row.render )
-    # puts (!game_over ? @target_row.render : @target_row.render )
-    puts "│"+SPACER
     rendered_string = ""
+    rendered_string << (!game_over ? "&nbsp;&nbsp;?&nbsp;&nbsp;?&nbsp;&nbsp;?&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;" : @target_row.render ) + '<br>'
+    # puts (!game_over ? @target_row.render : @target_row.render )
     @board_matrix.reverse.each_with_index do |row, index|
       rendered_string << row.render
-      rendered_string << "<text>&nbsp; &nbsp; | | |</text>"
-      rendered_string << "<br>"
       if @board_matrix.length-index-1==select
-        puts row.render(true) + (!game_over ? "  -#{index+1} attempts left" : "- FINAL COMP")
+        # puts row.render(true) + (!game_over ? "  -#{index+1} attempts left" : "- FINAL COMP")
+        # puts 'acticated'
       else
-        puts row.render + (row.keys.render) if row.activated?
+        # puts row.render + (row.keys.render) if row.activated?
+        if row.activated?
+          rendered_string << "&nbsp;&nbsp;"+row.keys.render
+        else
+          rendered_string << ("&nbsp;&nbsp;")
+        end
+        # puts 'acticated' if row.activated?
       end
-      puts ""+SPACER+""
+      # puts ""+SPACER+""
+      rendered_string << "<br>"
+
     end
     rendered_string
   end
-  def color_change_at x, y, reverse = false
-    @board_matrix[y].at(x).change_color reverse
+  def color_change_at x, y, reverse = false, col
+    @board_matrix[y].at(x).change_color col
   end
   def sprite_change_at x, y, reverse = false
-    @board_matrix[y].at(x).change_sprite reverse
+    @board_matrix[y].at(x).change_sprite
   end
   def reverse_row y
     @board_matrix[y].reverse_sprite_all
