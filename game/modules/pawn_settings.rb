@@ -1,4 +1,4 @@
 module PawnSettings
-  COL_LIB = (30..37).to_a
+  # COL_LIB = (0..1).to_a
   SPRITE_LIB = "◉ ◯".split().to_a
 end

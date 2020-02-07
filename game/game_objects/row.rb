@@ -3,7 +3,7 @@ require_relative '../modules/board_settings.rb'
 class Row
   include BoardSettings
   attr_accessor :row_array, :acivated, :color_preference, :keys
-  def initialize color_preference=[6, 6, 6, 6]
+  def initialize color_preference=[0, 0, 0, 0]
     @row_array = Array.new
     @color_preference = color_preference
     @acivated = false
@@ -45,7 +45,7 @@ class Row
   def color_array
     color_array = Array.new
     @row_array.each do |pawn|
-      color_array<<pawn.get_color-30
+      color_array<<pawn.get_color
     end
     return color_array
   end

@@ -16,17 +16,13 @@ class Board
     end
   end
   public
-  def render select=-1, game_over=false
+  def render selected=-1, game_over=false
     out = ""
     rendered_string = ""
-    rendered_string << (!game_over ? "&nbsp;&nbsp;?&nbsp;&nbsp;?&nbsp;&nbsp;?&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;" : @target_row.render ) + '<br>'
+    rendered_string << (!true ? "&nbsp;&nbsp;?&nbsp;&nbsp;?&nbsp;&nbsp;?&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;" : @target_row.render ) + '<br>'
     # puts (!game_over ? @target_row.render : @target_row.render )
     @board_matrix.reverse.each_with_index do |row, index|
       rendered_string << row.render
-      if @board_matrix.length-index-1==select
-        # puts row.render(true) + (!game_over ? "  -#{index+1} attempts left" : "- FINAL COMP")
-        # puts 'acticated'
-      else
         # puts row.render + (row.keys.render) if row.activated?
         if row.activated?
           rendered_string << "&nbsp;&nbsp;"+row.keys.render
@@ -34,11 +30,20 @@ class Board
           rendered_string << ("&nbsp;&nbsp;")
         end
         # puts 'acticated' if row.activated?
-      end
-      # puts ""+SPACER+""
-      rendered_string << "<br>"
+        # if @board_matrix.length-index-1==selected
+        #   # rendered_string << (!false ? " -#{index+1} attempts left" : "- FINAL COMP")
+        #   rendered_string << "attempts left"
+        #   puts 'ran'
+        # end
+          # rendered_string << "attempts left"
 
+        rendered_string << "<br>"
     end
+
+      
+      # puts ""+SPACER+""
+
+  # end
     rendered_string
   end
   def color_change_at x, y, reverse = false, col
@@ -51,7 +56,7 @@ class Board
     @board_matrix[y].reverse_sprite_all
   end
   def set_target_array preference=nil
-    if preference.nil? then preference = [rand(69),rand(69),rand(69),rand(69)] end
+    if preference.nil? then preference = [rand(8),rand(88),rand(8),rand(8)] end
     @target_row = Row.new(preference)
   end
 end

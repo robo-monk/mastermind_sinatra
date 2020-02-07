@@ -31,7 +31,7 @@ class Keys
     wh = bw[1]
     bl_str = "|"*bl
     wh_str = "|"*wh
-    return bl_str.colorize(36) + wh_str.colorize(35)
+    return bl_str.colorize(0) + wh_str.colorize(1)
   end
   def all_black?
     find_difference[0] >= 4

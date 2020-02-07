@@ -10,15 +10,12 @@ class Pawn
     @purgable = purgable
   end
   private
-  def get_color_code
-    COL_LIB[(@color)%COL_LIB.length]
-  end
   def get_sprite
     SPRITE_LIB[(@sprite)%SPRITE_LIB.length]
   end
   public
   def render
-    get_sprite.colorize(get_color_code)
+    get_sprite.colorize(get_color)
     # "o"
   end
   def change_color reverse = false, col
@@ -32,7 +29,8 @@ class Pawn
     @sprite=0 
   end
   def get_color
-    get_color_code
+    @color
+    # åß
     #TODO implement function that translates color code to words
   end
   def activate
@@ -41,9 +39,7 @@ class Pawn
   def activated?
     return !purgable 
   end
-  def color
-    @color%COL_LIB.length
-  end
+  # def color
+  #   @color%COL_LIB.length
+  # end
 end
-
-a = Pawn.new

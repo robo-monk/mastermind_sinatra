@@ -16,11 +16,15 @@ get '/game' do
   c3 = params['c3'].to_i
   c4 = params['c4'].to_i
   # puts c1,c2,c3,c4
-  if settings.turns <12
+  if settings.turns <11
     settings.game.edit_board(settings.turns, [c1,c2,c3,c4])
     out = settings.game.board.render
   else
-    out = "Game Over, fool!"
+    if settings.game.won
+      out = "Game Over, winner!"
+    else
+      out = 'you suckkk :('
+    end
   end
   # col1 = 'red'
   # puts b.render
